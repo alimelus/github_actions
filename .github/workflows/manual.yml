@@ -11,10 +11,7 @@ on:
         default: 'World'
         required: true
         type: string
-      name2:
-        description: 'enter workflow id to delete'
-        required: true
-        type: string
+     
       
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -32,7 +29,7 @@ jobs:
           org=alimelus
           repo=github_actions   
         
-          workflow_ids=($(gh api repos/$org/$repo/actions/workflows --paginate | jq '.workflows[] | select(.["state"] | contains("disabled_manually")) | .id'))     
+          workflow_ids=( $(gh api repos/$org/$repo/actions/workflows --paginate | jq '.workflows[] | select(.["state"] | contains("disabled_manually")) | .id') )     
           for workflow_id in "${workflow_ids[@]}"
           do
             echo "Listing runs for the workflow ID $workflow_id"
