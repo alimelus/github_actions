@@ -30,4 +30,4 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"  
-           gh run list -w $WORKFLOWID --repo github_actions -L 1 --json databaseId | jq '.[]| .databaseId'
+           echo  ${{ github.run_id }} 
