@@ -20,7 +20,9 @@ jobs:
     - name: Send greeting
       run: |
           org=alimelus
-          repo=github_actions   
+          repo=github_actions 
+          env:
+           GH_TOKEN: ${{ github.token }}
         
           workflow_id=($(gh api repos/$org/$repo/actions/workflows --paginate | jq '.workflows[] | select(.["state"] | contains("disabled_manually")) | .id'))     
           for workflow_id in "${workflow_ids[@]}"
