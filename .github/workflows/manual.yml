@@ -32,5 +32,5 @@ jobs:
 
            user=alimelus repo=github_actions; gh api repos/$user/$repo/actions/runs \
           --paginate -q '.workflow_runs[] | select(.head_branch != "master") | "\(.id)"' | \
-           xargs -n1 -I % gh api repos/$user/$repo/actions/runs/% -X DELETE
+           xargs -n1 -L1 -I % gh api repos/$user/$repo/actions/runs/% -X DELETE
            
