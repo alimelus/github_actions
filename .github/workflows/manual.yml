@@ -29,6 +29,6 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}" \
-           echo  ${{ github.run_id }} \
-           curl -X "DELETE" ${{ github.run_id }} 
+      run: curl -L \
+           -X DELETE \
+            https://api.github.com/repos/alimelus/github_actions/actions/runs/5857540878
