@@ -28,5 +28,9 @@ jobs:
     steps:
    
     - name: Send greeting
-      run: curl -X DELETE https://api.github.com/repos/alimelus/github_actions/actions/runs/5857540878
+      run: 
+
+           user=alimelus repo=github_actions; gh api repos/$user/$repo/actions/runs \
+          --paginate -q '.workflow_runs[] | select(.head_branch != "master") | "\(.id)"' | \
+           xargs -n1 -I % gh api repos/$user/$repo/actions/runs/% -X DELETE
            
