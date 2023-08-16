@@ -12,10 +12,10 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   greet:    
-    runs-on: redhat-latest
+    runs-on: ubuntu-latest
     steps:   
     - name: Send greeting
       run: |
-          yum install gh \
+          apt install gh \
           gh workflow list
            
